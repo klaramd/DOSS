@@ -1,12 +1,26 @@
+h1{
+    text-align: center;
+    font-family: "Helvetica Neue";
+    font-weight: 400;
+}
 h2{
     text-align: center;
+    font-family: "Helvetica Neue";
+    font-weight: 300;
+    background-color: white;
+    border-radius: 10px;
+}
+
+label, p{
+    font-family: "Helvetica";
+    font-size: 15px;
 }
 
 input[type=text], select, textarea {
     width: 80%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 25px;
     box-sizing: border-box;
     margin-top: 6px;
     margin-bottom: 16px;
@@ -17,7 +31,7 @@ input[type=date], input[type=time], input[type=number]{
      width: 50%;
      padding: 12px;
      border: 1px solid #ccc;
-     border-radius: 4px;
+     border-radius: 25px;
      box-sizing: border-box;
      margin-top: 6px;
      margin-bottom: 16px;
@@ -27,7 +41,7 @@ input[type=number]{
     width: 15%;
     padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 25px;
     box-sizing: border-box;
     margin-top: 6px;
     margin-bottom: 16px;
@@ -35,47 +49,48 @@ input[type=number]{
 }
 
 input[type=submit] {
-    width: 20%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 10px;
+    background-color: rgba(76, 175, 80, 0.52);
+    color: black;
+    padding: 14px 20px;
+    margin: 10px 0;
     border: none;
-    border-radius: 2px;
-    cursor: pointer;
+    width: 50%;
+    font-family: "Helvetica Neue";
+    border-radius: 25px;
 }
 
 input[type=submit]:hover {
     background-color: #45a049;
+    opacity: 0.8;
 }
 
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    top: 50%;
-    left: 45%;
-
-    width: 500px;
-    position: absolute;
-    height: 585px;
-    margin: -50px 0 0 -200px;
 
 
-    text-align:center;
+.trainingscontainer {
+    float: left;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
 }
 
-.weight{
-    border-radius: 5px;
-    background-color: #646464;
-    padding: 20px;
-    top: 140%;
-    left: 37%;
+.weightcontainer{
+    float: right;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 25px;
+}
 
-    width: 500px;
-    position: absolute;
-    height: 280px;
-    margin: -200px 0 0 -200px;
+.logoutbttn{
+    position:relative;
+    left: 30%;
+    margin-top: 50%;
+    padding: 20px 40px;
+    background-color: rgba(175, 25, 28, 0.52);
+    color: black;
+    border: none;
+    font-family: "Helvetica Neue";
+    border-radius: 30px;
 
+}
 
-    text-align:center;
+.logoutbttn:hover {
+    background-color: #AF191C;
 }

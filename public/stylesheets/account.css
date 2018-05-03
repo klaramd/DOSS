@@ -13,13 +13,14 @@ h2{
     left: 50%;
     bottom: 50%;
     right: 50%;
-    border: thick;
-    border-color: #cccccc;
     font-family: "Helvetica";
     font-size: 15px;
-
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
+.signupcontainer{
+    background-color: rgba(255, 255, 255, 0.4);
+}
 
 label{
     font-family: "Helvetica";
@@ -62,7 +63,7 @@ label{
 }
 
 .form button:hover{
-    background-color: #45a049;
+    background-color: #4CAF50;
     opacity: 0.8;
 }
 
@@ -86,6 +87,6 @@ label{
 }
 
 .registerbtn:hover{
-    background-color: #8c9bd8;
+    background-color: #8C9BD8;
     opacity: 0.8;
 }

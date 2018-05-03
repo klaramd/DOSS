@@ -3,11 +3,14 @@
     <button class="tablinks"> <a href="/statistics"> Statistics </a> </button>
     <button class="tablinks"> <a href="/community"> Community  </a> </button>
 </div>
-<h1> Hi User with ID {{output}}</h1>
-<form action="/logout" method="post">
-    <button class="tablinks"> Logout </a> </button>
-</form>
-<div class="container">
+
+
+
+
+<h1> Hi {{output}}</h1>
+
+
+    <div class="trainingscontainer">
     <h2>Did you have a training session?</h2>
     <form action="/useraccount/submittraining" method="post">
         <label for="startdate">Which day did you start?</label><br>
@@ -28,7 +31,8 @@
 
         <input type="submit" value="Add">
     </form>
-
+    </div>
+    <div class="weightcontainer">
     <form action="/useraccount/submitweight" method="post" class="weight">
         <h2>Did you reached a new weight?</h2>
         <label for="weightdate">Which day did you weigh yourself?</label><br>
@@ -40,5 +44,9 @@
 
         <input type="submit" value="Add">
     </form>
-</div>
+    </div>
+
+<form action="/logout" method="post">
+    <button class="logoutbttn"> Logout </button>
+</form>
 

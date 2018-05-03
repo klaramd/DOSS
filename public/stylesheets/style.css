@@ -1,4 +1,7 @@
 
+background{
+
+}
 body {
   padding: 50px;
   font-family: Helvetica Neue;
@@ -7,7 +10,7 @@ body {
   float: none;
   text-align: center;
   background-image: url('../images/wallpapertest2.png');
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 
 
 
