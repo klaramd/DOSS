@@ -14,6 +14,10 @@
 
 }
 
+label{
+    font-family: "Helvetica";
+    font-size: 15px;
+}
 .form input[type=text] {
     width: 100%;
     padding: 12px 20px;
@@ -59,11 +63,22 @@
     float: right;
 }
 
+.rmb{
+    float: left;
+}
+
 .registerbtn {
-    padding: 10px 18px;
-    background-color: #8c9bd8;
-    position: absolute;
     color: white;
+    padding: 12px 18px;
+    background-color: rgba(140, 155, 216, 0.52);
+    position: absolute;
     top: 75%;
-    left: 44%;
+    left: 43.5%;
+    font-family: "Helvetica Neue";
+    border-radius: 25px;
+}
+
+.registerbtn:hover{
+    background-color: #8c9bd8;
+    opacity: 0.8;
 }
