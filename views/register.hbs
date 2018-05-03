@@ -4,20 +4,20 @@
     <button class="tablinks"> About </button>
     <button class="tablinks"> <a href="/contact"> Contact </a> </button>
 </div>
-<h1>Join us!</h1>
+<h2>Register now and join our community</h2>
 <div class="container">
     <form action="/register/submit" method="post">
         <label for="regname">Username</label>
-        <input type="text" name="regname" placeholder="Your Username..">
+        <input type="text" name="regname" required placeholder="Your Username..">
 
         <label for="regpw">Password</label>
-        <input type="text" name="regpw" placeholder="Your Password..">
+        <input type="password" name="regpw" required placeholder="Your Password..">
 
         <label for="city">City</label>
-        <input type="text" name="city" placeholder="Your City..">
+        <input type="text" name="city" required placeholder="Your City..">
 
         <label for="birthday">Birthday</label>
-        <input type="date" name="birthday"> </input>
+        <input type="date" name="birthday" required> </input>
 
         <input type="submit" value="Register">
     </form>

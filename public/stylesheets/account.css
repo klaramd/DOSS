@@ -1,4 +1,10 @@
-
+h2{
+    text-align: center;
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
+    background-color: white;
+    border-radius: 25px;
+}
 .form {
     width: 350px;
     position: absolute;
@@ -13,6 +19,7 @@
     font-size: 15px;
 
 }
+
 
 label{
     font-family: "Helvetica";
@@ -45,7 +52,7 @@ label{
 
 .form button {
     background-color: rgba(76, 175, 80, 0.52);
-    color: white;
+    color: black;
     padding: 14px 20px;
     margin: 10px 0;
     border: none;
@@ -55,7 +62,7 @@ label{
 }
 
 .form button:hover{
-    background-color: rgb(65, 162, 65);
+    background-color: #45a049;
     opacity: 0.8;
 }
 
