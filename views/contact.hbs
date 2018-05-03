@@ -1,0 +1,23 @@
+<link rel="stylesheet" type="text/css" href='/stylesheets/contact.css'>
+<div class="tab">
+    <button class="tablinks"> <a href="/account"> Login </a> </button>
+    <button class="tablinks"> <a href="/"> About  </a> </button>
+    <button class="tablinks"> <a href="/contact"> Contact </a> </button>
+</div>
+<h1>Elisa</h1>
+<h2> Gjuterigatan 5 <br>553 18 Jönköping</h2>
+
+<div class="container">
+    <form action="/contact/submit" method="post">
+        <h3> You want to write us?</h3>
+        <label for="contactemail">Email</label>
+        <input type="email" name="contactemail" placeholder="Your Email..">
+
+        <label for="contactreference">Reference</label>
+        <input type="text" name="contactreference" placeholder="Your Reference..">
+
+        <label for="contactmes">Content</label>
+        <textarea type="text" name="contactmes" placeholder="What do you want to tell us ..?"> </textarea>
+        <input type="submit" value="Send">
+    </form>
+</div>

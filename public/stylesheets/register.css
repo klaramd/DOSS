@@ -1,0 +1,49 @@
+h1{
+    text-align: center;
+}
+
+input[type=text], input[type=date], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+
+    width: 400px;
+    position: absolute;
+    height: 350px;
+    margin: -100px 0 0 -200px;
+
+    /*
+    width: 400px;
+    position: absolute;
+    height: 200px;
+    margin: -100px 0 0 -200px;
+    top: 50%;
+    left: 50%;*/
+    text-align:center;
+}

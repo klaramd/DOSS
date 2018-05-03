@@ -1,0 +1,44 @@
+<link rel="stylesheet" type="text/css" href='/stylesheets/useraccount.css'>
+<div class="tab">
+    <button class="tablinks"> <a href="/statistics"> Statistics </a> </button>
+    <button class="tablinks"> <a href="/community"> Community  </a> </button>
+</div>
+<h1> Hi User with ID {{output}}</h1>
+<form action="/logout" method="post">
+    <button class="tablinks"> Logout </a> </button>
+</form>
+<div class="container">
+    <h2>Did you have a training session?</h2>
+    <form action="/useraccount/submittraining" method="post">
+        <label for="startdate">Which day did you start?</label><br>
+        <input type="date" name="startdate"><br>
+
+        <label for="starttime">What time did you start?</label><br><br>
+        <input type="time" name="starttime"><br><br>
+
+        <label for="enddate">Which day did you end?</label><br>
+        <input type="date" name="enddate"><br>
+
+        <label for="endtime">What time did you end?</label><br><br>
+        <input type="time" name="endtime"><br><br>
+
+        <label for="details">Details</label><br>
+        <textarea type="text" name="details" placeholder="What did you do?"> </textarea>
+
+
+        <input type="submit" value="Add">
+    </form>
+
+    <form action="/useraccount/submitweight" method="post" class="weight">
+        <h2>Did you reached a new weight?</h2>
+        <label for="weightdate">Which day did you weigh yourself?</label><br>
+        <input type="date" name="weightdate"><br>
+
+        <label for="weightkg">How many kg?</label><br><br>
+        <input type="number" name="weightkg"> kg <br><br>
+
+
+        <input type="submit" value="Add">
+    </form>
+</div>
+

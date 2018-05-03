@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href='/stylesheets/account.css'>
+<div class="tab">
+    <button class="tablinks"> <a href="/"> Home </a> </button>
+    <button class="tablinks"> About </button>
+    <button class="tablinks"> <a href="/contact"> Contact </a></button>
+</div>
+
+<form action="/account/submit" method="post" class="form">
+
+    <label><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username"required>
+
+    <label><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="userpw"required>
+
+    <button type="submit"> Login </button>
+    <div>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+
+</form>
+<div class="container">
+    <button type="button" class="registerbtn">  <a href="/register"> Not registered yet? </a> </button>
+</div>

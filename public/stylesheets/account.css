@@ -1,0 +1,69 @@
+
+.form {
+    width: 350px;
+    position: absolute;
+    margin: -100px 0 0 -175px;
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    right: 50%;
+    border: thick;
+    border-color: #cccccc;
+    font-family: "Helvetica";
+    font-size: 15px;
+
+}
+
+.form input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-family: "Helvetica Neue";
+    border-radius: 25px;
+    color: black;
+}
+
+.form input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-family: "Helvetica Neue";
+    border-radius: 25px;
+}
+
+.form button {
+    background-color: rgba(76, 175, 80, 0.52);
+    color: white;
+    padding: 14px 20px;
+    margin: 10px 0;
+    border: none;
+    width: 50%;
+    font-family: "Helvetica Neue";
+    border-radius: 25px;
+}
+
+.form button:hover{
+    background-color: rgb(65, 162, 65);
+    opacity: 0.8;
+}
+
+.psw {
+    float: right;
+}
+
+.registerbtn {
+    padding: 10px 18px;
+    background-color: #8c9bd8;
+    position: absolute;
+    color: white;
+    top: 75%;
+    left: 44%;
+}

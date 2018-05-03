@@ -1,0 +1,54 @@
+
+body {
+  padding: 50px;
+  font-family: Helvetica Neue;
+  font-weight: lighter;
+  font-size: 20px;
+  float: none;
+  text-align: center;
+  background-image: url('../images/wallpapertest2.png');
+  background-repeat: no-repeat;
+
+
+
+}
+
+
+ /*Style the buttons inside the tab */
+.tab button  {
+  text-decoration: none;
+  border-radius: 25px;
+  border-color: white;
+  background-color: inherit;
+  padding: 15px 10px;
+  transition: 0.6s;
+  font-family: Helvetica Neue;
+  font-weight: lighter;
+  font-size: 20px;
+  width: 23%;
+  /*padding: 14px 16px;*/
+
+}
+
+/*Change background color of buttons on hover*/
+.tab button:hover {
+  background-color: rgba(255, 255, 255, 0.73);
+  text-decoration: none;
+}
+
+/*Create an active/current tablink class */
+.tab button.active {
+  text-decoration: none;
+  background-color: #ccc;
+}
+
+/*Style the tab content */
+.tabcontent {
+  text-decoration: none;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
