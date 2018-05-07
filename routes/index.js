@@ -7,6 +7,7 @@ var jwt = require('jsonwebtoken');
 var config = require('../config');
 var dbPromise = require('../db');
 
+
 //All post and gets
 //So essentially GET is used to retrieve remote data, and POST is used to insert/update remote data
 
@@ -14,7 +15,7 @@ var dbPromise = require('../db');
 router.get('/', function(req, res, next) {
     res.render('index', {
         title: 'My TD platform',
-        text: 'This helps to track your body and activites'
+        text: 'This helps to track your body and activites',
 
     });
     console.log(req.session);
@@ -41,7 +42,9 @@ router.post('/account/submit', async function(req,res,next){
                 req.session.isLoggedIn = true;
                 req.session.userId = userQuery.dataValues.id;
                 console.log(req.session.userId);
-                res.redirect('/useraccount/' + req.session.userId);}
+                res.redirect('/useraccount/' + req.session.userId);
+
+            }
 
         } catch(error){
             console.log(error);
@@ -50,11 +53,14 @@ router.post('/account/submit', async function(req,res,next){
 
     };
 
+
 });
 
 //Get the id
 router.get('/useraccount/:id', function(req, res,next){
-    res.render('useraccount', {output: req.params.id});
+    res.render('useraccount', {
+        output: req.params.id,
+        usernametest: req.session.Cookie});
 
 });
 
@@ -170,8 +176,6 @@ router.post('/api/login', async function(req,res,next){
         res.status(400).send("Errorrr");
     }
 });
-
-
 
 module.exports = router;
 //module.exports = {'secret': 'supersecret'};

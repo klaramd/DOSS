@@ -16,6 +16,10 @@ label, p{
     font-size: 15px;
 }
 
+.designtest{
+
+}
+
 input[type=text], select, textarea {
     width: 80%;
     padding: 12px;
