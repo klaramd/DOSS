@@ -215,6 +215,39 @@ router.post('/api/weight', async function(req,res,next){
  }
 });
 
+router.post('/api/training', async function(req,res,next){
+    try {
+        try {
+            var headertest = req.headers["authorization"];
+            console.log(headertest);
+        } catch (error) {
+            console.log(error);
+            res.status(401).send("Authorization header is missing");
+        }
+
+
+        var accesstoken = headertest.substring(7);
+
+        var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+        console.log(unwrappedaccesstoken.valueOf().id);
+
+
+        await dbPromise.Training.create({
+            userId: unwrappedaccesstoken.valueOf().id,
+            startDate: req.body.startdate,
+            startTime: req.body.starttime,
+            endDate: req.body.enddate,
+            endTime: req.body.endtime,
+            description: req.body.details
+        })
+
+        res.status(204).send("Everything went fffiiiiiiiine");
+
+        //res.redirect('/useraccount/');
+    } catch (error){
+        res.status(400).send("Something is wrong");
+    }
+});
 
 
 module.exports = router;
