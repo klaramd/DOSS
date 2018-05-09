@@ -182,33 +182,37 @@ router.post('/api/login', async function(req,res,next){
     }
 
 }});
-/*
+
 
 router.post('/api/weight', async function(req,res,next){
-    try{
-        var headertest = req.headers["authorization"];
-        console.log(headertest);
-    } catch (error){
-        console.log(error);
-        res.status(401).send("Authorization header is missing");
-    }
+ try {
+     try {
+         var headertest = req.headers["authorization"];
+         console.log(headertest);
+     } catch (error) {
+         console.log(error);
+         res.status(401).send("Authorization header is missing");
+     }
 
 
-    var accesstoken = headertest.substring(7);
+     var accesstoken = headertest.substring(7);
 
-    var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
-    console.log(unwrappedaccesstoken.valueOf().id);
+     var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+     console.log(unwrappedaccesstoken.valueOf().id);
 
 
-    var weightTest = await dbPromise.Weight.create({
-        userId: unwrappedaccesstoken.valueOf().id,
-        weightDate: req.body.weightdate,
-        weightKG: req.body.weightkg
-    })
+     var weightTest = await dbPromise.Weight.create({
+         userId: unwrappedaccesstoken.valueOf().id,
+         weightDate: req.body.weightdate,
+         weightKG: req.body.weightkg
+     })
 
-    console.log(weightTest);
+     res.status(204).send("Everything went fffiiiiiiiine");
 
-   // res.redirect('/useraccount/');
+     //res.redirect('/useraccount/');
+     } catch (error){
+     res.status(400).send("Something is wrong");
+ }
 });
 
 
