@@ -150,32 +150,68 @@ router.post('/logout', function(req,res,next){
 
 router.post('/api/login', async function(req,res,next){
     if(req.body.username && req.body.userpw) {
+        try{
         //Find the user with those credentials in the database and fetch aslo the pw for hte password check
-        console.log(req.body.username);
+
         var userQuery = await dbPromise.User.findOne({
-            attributes: ['id', 'pw'],
+            attributes: ['id', 'pw', 'userName'],
             where: {
                 userName: req.body.username
             }
         })
-
+            if (!userQuery) return res.status(404).send("No user found");
        // if (err) return res.status(500).send("Error");
-        if (!userQuery) return res.status(404).send("No user found");
         var passwordCheckApi = bcrypt.compare(req.body.userpw, userQuery.dataValues.pw);
+
         if (!passwordCheckApi) return res.status(401).send({auth: false, token: null}, "Wrong password");
 
-        //username as well
-        console.log(userQuery.dataValues.userName);
-        var usertoken = jwt.sign({id: userQuery.dataValues.id}, config.secret, {expiresIn: 86400});
-        //create an access token   - jwt.verify to parse it back
-       // var accesstoken = jwt.sign
+
+        var usertoken = jwt.sign({id: userQuery.dataValues.id, username: userQuery.dataValues.userName}, config.secret, {expiresIn: 86400});
         console.log(usertoken);
+        var testusertoken = jwt.verify(usertoken, config.secret);
+        console.log(testusertoken);
+        //create an access token   - jwt.verify to parse it back
+        var accesstoken = jwt.sign ({id: userQuery.dataValues.id}, config.secret, {expiresIn: 86400});
+        console.log(accesstoken);
+
         res.status(200).send({auth: true, token: usertoken})
 
-    } else {
+    } catch (error) {
+
         res.status(400).send("Errorrr");
     }
+
+}});
+/*
+
+router.post('/api/weight', async function(req,res,next){
+    try{
+        var headertest = req.headers["authorization"];
+        console.log(headertest);
+    } catch (error){
+        console.log(error);
+        res.status(401).send("Authorization header is missing");
+    }
+
+
+    var accesstoken = headertest.substring(7);
+
+    var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+    console.log(unwrappedaccesstoken.valueOf().id);
+
+
+    var weightTest = await dbPromise.Weight.create({
+        userId: unwrappedaccesstoken.valueOf().id,
+        weightDate: req.body.weightdate,
+        weightKG: req.body.weightkg
+    })
+
+    console.log(weightTest);
+
+   // res.redirect('/useraccount/');
 });
+
+
 
 module.exports = router;
 //module.exports = {'secret': 'supersecret'};
