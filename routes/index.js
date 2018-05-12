@@ -13,6 +13,7 @@ var dbPromise = require('../db');
 
 /* GET home page with the session */
 router.get('/', function(req, res, next) {
+
     res.render('index', {
         title: 'My TD platform',
         text: 'This helps to track your body and activites',
@@ -146,6 +147,23 @@ router.post('/logout', function(req,res,next){
     //console.log(session);
 })
 
+//Da es ein post request wird es nicht gefired - mit get aber findet er das nicht
+// Muss lösung finden die session ID zu bekommen im statistics.js -> gits abgucken die mehrere router haben
+//wie die das händeln
+router.post('/statistics', async function(req, res, next) {
+    var weightDisplay = await dbPromise.Weight.findById({
+        attributes: ['weightKG'],
+        where: {
+            userId: req.session.userId
+        }
+
+    });
+    console.log("Statistics post request fired")
+    res.render('statistics', {weighttest: weightDisplay});
+})
+
+
+
 /****************** REST API STUFF ***********/
 
 router.post('/api/login', async function(req,res,next){
@@ -201,7 +219,7 @@ router.post('/api/weight', async function(req,res,next){
      console.log(unwrappedaccesstoken.valueOf().id);
 
 
-     var weightTest = await dbPromise.Weight.create({
+     await dbPromise.Weight.create({
          userId: unwrappedaccesstoken.valueOf().id,
          weightDate: req.body.weightdate,
          weightKG: req.body.weightkg
@@ -250,7 +268,16 @@ router.post('/api/training', async function(req,res,next){
 });
 
 
+
+module.exports = {
+    humans: [
+        {id: 0, name: "Alice", age: 10},
+        {id: 1, name: "Bob", age: 15},
+        {id: 2, name: "Clair", age: 20}
+    ]
+};
 module.exports = router;
+
 //module.exports = {'secret': 'supersecret'};
 
 

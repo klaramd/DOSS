@@ -4,12 +4,15 @@
     <button class="tablinks"> Contact </button>
 </div>
 
-<h1>{{title}}</h1>
+<h1>{{title}} {{displaytest}}</h1>
 <p>Welcome to {{title}}</p>
 <p> {{text}}</p>
 
 <div>
-    {{#each languages}}
-        <p>{{@index}}. {{this}}</p>
-    {{/each}}
+    <ul>
+        {{#each humans}}
+            <li><a href="/humans/{{id}}">{{name}}</a></li>
+        {{/each}}
+    </ul>
+
 </div>

@@ -11,6 +11,13 @@
 
 <div class="weight">
     <h2>Your weight progress</h2>
+
+    <ul>
+        {{#each weighttest}}
+            <li>{{weightKG}}</li>
+        {{/each}}
+    </ul>
+
 </div>
 
 <form action="/logout" method="post">

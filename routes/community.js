@@ -3,17 +3,19 @@
  */
 var express = require('express');
 var router = express.Router();
+var dbPromise = require('../db');
 
 
+router.get('/', async function(req, res, next) {
 
+    var allMembers = await dbPromise.User.findAll({
+        attributes: ['id', 'userName', 'city']
+    })
+    //console.log(allMembers.dataValues.id);
 
-var communityfunction= {//getallUsers from the database with the name and city except the current ID
-}
-
-
-router.get('/', function(req, res, next) {
     res.render('community', {
-        community: communityfunction
+        test: 'My TD platform',
+        test2: allMembers
     });
 });
 
