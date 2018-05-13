@@ -4,6 +4,8 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
+
+
 var config = require('../config');
 var dbPromise = require('../db');
 
@@ -150,7 +152,8 @@ router.post('/logout', function(req,res,next){
 //Da es ein post request wird es nicht gefired - mit get aber findet er das nicht
 // Muss lösung finden die session ID zu bekommen im statistics.js -> gits abgucken die mehrere router haben
 //wie die das händeln
-router.post('/statistics', async function(req, res, next) {
+/*
+router.get('/statistics', async function(req, res, next) {
     var weightDisplay = await dbPromise.Weight.findById({
         attributes: ['weightKG'],
         where: {
@@ -161,7 +164,7 @@ router.post('/statistics', async function(req, res, next) {
     console.log("Statistics post request fired")
     res.render('statistics', {weighttest: weightDisplay});
 })
-
+*/
 
 
 /****************** REST API STUFF ***********/
