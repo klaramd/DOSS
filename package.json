@@ -9,6 +9,7 @@
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.2",
     "cookie-parser": "~1.4.3",
+    "datejs": "^1.0.0-rc3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
@@ -22,4 +23,3 @@
     "sqlite3": "^4.0.0"
   }
 }
-//https://www.youtube.com/watch?v=_EP2qCmLzSE

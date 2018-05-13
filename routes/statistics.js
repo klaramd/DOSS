@@ -12,6 +12,14 @@ var config = require('../config');
 router.get('/', async function(req, res, next) {
 
 
+    var trainingDisplay = await dbPromise.Training.findAll({
+        attributes: ['description', 'startDate', 'startTime', 'endTime'],
+        where: {
+            userId: req.session.userId
+        }
+    });
+
+
     var weightDisplay = await dbPromise.Weight.findAll({
         attributes: ['weightKG', 'weightDate'],
         where: {
@@ -20,12 +28,11 @@ router.get('/', async function(req, res, next) {
 
     });
 
-
     console.log("Statistics post request fired")
 
 
     console.log(req.session.userId);
-    res.render('statistics', {weighttest: weightDisplay})
+    res.render('statistics', {weighttest: weightDisplay, trainingstest: trainingDisplay})
 });
 
 module.exports = router;

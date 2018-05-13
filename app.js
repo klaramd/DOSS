@@ -14,6 +14,7 @@ var bcrypt = require('bcrypt');
 const sqlite = require('sqlite');
 const Sequelize = require('sequelize');
 
+
 const sequelize = new Sequelize('sqlite:my-database.db');
 
 var indexRouter = require('./routes/index');
