@@ -24,6 +24,7 @@ var userRouter = require('./routes/useraccount');
 var statisticsRouter = require('./routes/statistics');
 var communityRouter = require('./routes/community');
 var contactRouter = require('./routes/contact');
+var aboutRouter = require('./routes/about');
 
 var app = express();
 
@@ -49,9 +50,9 @@ app.use('/useraccount', userRouter);
 app.use('/statistics', statisticsRouter);
 app.use('/community', communityRouter);
 app.use('/contact', contactRouter);
+app.use('/about', aboutRouter);
 
-app.get('/', function(request, response){ // Render /views/your-view.hbs response.render("your-view.hbs")
-})
+
 
 app.listen(8080);
 
