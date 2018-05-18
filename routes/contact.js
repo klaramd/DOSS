@@ -9,4 +9,15 @@ router.get('/', function(req, res, next) {
     });
 });
 
+//Contact infos
+router.post('/submit', function(req,res,next){
+    var newContact = {
+        contactemail: req.body.contactemail,
+        contactreference: req.body.contactreference,
+        contactmes: req.body.contactmes
+    };
+    res.redirect('/contact');
+    console.log(newContact);
+});
+
 module.exports = router;

@@ -62,49 +62,15 @@ router.post('/account/submit', async function(req,res,next){
 
 router.get('/useraccount/:id', function(req, res,next){
     res.render('useraccount', {
-        output: req.params.id,
-        usernametest: req.session.Cookie});
+        output: req.params.id
+       });
 
     console.log(req.params.id);
     console.log('hi');
 
 });
 
-//statisticsRouter.post
-//Getting new trainings input
-router.post('/useraccount/submittraining', async function(req,res,next){
-    //var currentID = req.params.id;
-    await dbPromise.Training.create({
-        userId: req.session.userId,
-        startDate: req.body.startdate,
-        startTime: req.body.starttime,
-        endDate: req.body.enddate,
-        endTime: req.body.endtime,
-        description: req.body.details
-    })
-    /* DISPLAYING SHIZZLE
-     const trainingtest = await dbPromise.User.findById(2, {include: [dbPromise.Training]})
-     console.log(trainingtest.trainings.map(t => t.description))
-     */
-    res.redirect('/useraccount/' );
-});
 
-//Getting new weight input
-router.post('/useraccount/submitweight', async function(req,res,next){
-    // var currentID = req.params.id;
-    await dbPromise.Weight.create({
-        userId: req.session.userId,
-        weightDate: req.body.weightdate,
-        weightKG: req.body.weightkg
-    })
-
-    /*DISPLAYING SHIZZLE
-     const test = await dbPromise.User.findById(2, {include: [dbPromise.Weight] })
-     //console.log(test.weights)
-     console.log(test.weights.map(w => w.weightKG))
-     */
-    res.redirect('/useraccount/');
-});
 
 
 //Register credentials
@@ -125,49 +91,7 @@ router.post('/register/submit', async function(req,res,next){
 
     res.redirect('/register');
 });
-//https://medium.freecodecamp.org/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52
 
-//Contact infos
-router.post('/contact/submit', function(req,res,next){
-    var newContact = {
-        contactemail: req.body.contactemail,
-        contactreference: req.body.contactreference,
-        contactmes: req.body.contactmes
-    };
-    res.redirect('/contact');
-    console.log(newContact);
-});
-
-
-//Logout
-//Can't destroy it since action thingy works only with forms
-router.post('/logout', function(req,res,next){
-    req.session.destroy(function(err) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.redirect('/');
-           // req.session.isLoggedIn = false;
-        }
-    });
-})
-
-//Da es ein post request wird es nicht gefired - mit get aber findet er das nicht
-// Muss lösung finden die session ID zu bekommen im statistics.js -> gits abgucken die mehrere router haben
-//wie die das händeln
-/*
-router.get('/statistics', async function(req, res, next) {
-    var weightDisplay = await dbPromise.Weight.findById({
-        attributes: ['weightKG'],
-        where: {
-            userId: req.session.userId
-        }
-
-    });
-    console.log("Statistics post request fired")
-    res.render('statistics', {weighttest: weightDisplay});
-})
-*/
 
 router.get('/communityuser/:id', async function(req, res){
     console.log("hello community")
