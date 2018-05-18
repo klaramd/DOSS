@@ -3,10 +3,15 @@
  */
 var express = require('express');
 var router = express.Router();
+var dbPromise = require('../db');
 
-var data = ("../dummy-data");
+
 /* GET account page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
+    /*
+    var userName =    var allMembers = await dbPromise.User.findOne({
+        attributes: ['id', 'userName', 'city']
+    })*/
     res.render('useraccount')
 });
 

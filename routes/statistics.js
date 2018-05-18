@@ -35,6 +35,8 @@ router.get('/', async function(req, res, next) {
     res.render('statistics', {weighttest: weightDisplay, trainingstest: trainingDisplay})
 });
 
+
+
 router.get('/statistics/:id', function(req,res,next){
     res.render('statistics');
 })

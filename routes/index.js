@@ -59,11 +59,14 @@ router.post('/account/submit', async function(req,res,next){
 
 });
 
-//Get the id
+
 router.get('/useraccount/:id', function(req, res,next){
     res.render('useraccount', {
         output: req.params.id,
         usernametest: req.session.Cookie});
+
+    console.log(req.params.id);
+    console.log('hi');
 
 });
 
@@ -144,9 +147,9 @@ router.post('/logout', function(req,res,next){
             console.log(err);
         } else {
             res.redirect('/');
+           // req.session.isLoggedIn = false;
         }
     });
-    //console.log(session);
 })
 
 //Da es ein post request wird es nicht gefired - mit get aber findet er das nicht
@@ -166,6 +169,17 @@ router.get('/statistics', async function(req, res, next) {
 })
 */
 
+router.get('/communityuser/:id', async function(req, res){
+    console.log("hello community")
+     const id =  req.params.id
+     const trainingDisplay = await dbPromise.Training.findAll({
+     attributes: ['description', 'startDate', 'startTime', 'endTime'],
+     where: {
+     userId: id
+     }
+     })
+    res.render('communityuser', {test: trainingDisplay})
+})
 
 /****************** REST API STUFF ***********/
 
@@ -194,7 +208,7 @@ router.post('/api/login', async function(req,res,next){
         //create an access token   - jwt.verify to parse it back
         var accesstoken = jwt.sign ({id: userQuery.dataValues.id}, config.secret, {expiresIn: 86400});
         console.log(accesstoken);
-
+            console.log(req.params.id);
         res.status(200).send({auth: true, token: usertoken})
 
     } catch (error) {
@@ -209,7 +223,6 @@ router.post('/api/weight', async function(req,res,next){
  try {
      try {
          var headertest = req.headers["authorization"];
-         console.log(headertest);
      } catch (error) {
          console.log(error);
          res.status(401).send("Authorization header is missing");
@@ -218,18 +231,26 @@ router.post('/api/weight', async function(req,res,next){
 
      var accesstoken = headertest.substring(7);
 
-     var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+     try {
+         var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+     } catch(error) {
+         console.log(error);
+         res.status(400).send("Token is broken");
+     }
      console.log(unwrappedaccesstoken.valueOf().id);
+     console.log(req.body.userId);
+     console.log('hi');
+    //getting the userID from the body and then check if it the same from the unwrappedtoken
+     if(unwrappedaccesstoken.valueOf().id == req.body.userId) {
+         await
+         dbPromise.Weight.create({
+             userId: unwrappedaccesstoken.valueOf().id,
+             weightDate: req.body.weightdate,
+             weightKG: req.body.weightkg
+         })
 
-
-     await dbPromise.Weight.create({
-         userId: unwrappedaccesstoken.valueOf().id,
-         weightDate: req.body.weightdate,
-         weightKG: req.body.weightkg
-     })
-
-     res.status(204).send("Everything went fffiiiiiiiine");
-
+         res.status(204).send("Everything went fffiiiiiiiine");
+     }
      //res.redirect('/useraccount/');
      } catch (error){
      res.status(400).send("Something is wrong");
@@ -249,7 +270,12 @@ router.post('/api/training', async function(req,res,next){
 
         var accesstoken = headertest.substring(7);
 
-        var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+        try {
+            var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+        } catch(error) {
+            console.log(error);
+            res.status(400).send("Token is broken");
+        }
         console.log(unwrappedaccesstoken.valueOf().id);
 
 
@@ -272,13 +298,6 @@ router.post('/api/training', async function(req,res,next){
 
 
 
-module.exports = {
-    humans: [
-        {id: 0, name: "Alice", age: 10},
-        {id: 1, name: "Bob", age: 15},
-        {id: 2, name: "Clair", age: 20}
-    ]
-};
 module.exports = router;
 
 //module.exports = {'secret': 'supersecret'};

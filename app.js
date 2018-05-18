@@ -26,6 +26,7 @@ var communityRouter = require('./routes/community');
 var contactRouter = require('./routes/contact');
 var aboutRouter = require('./routes/about');
 
+
 var app = express();
 
 // view engine setup
@@ -51,6 +52,7 @@ app.use('/statistics', statisticsRouter);
 app.use('/community', communityRouter);
 app.use('/contact', contactRouter);
 app.use('/about', aboutRouter);
+
 
 
 
