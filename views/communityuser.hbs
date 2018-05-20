@@ -3,13 +3,28 @@
     <button class="tablinks"> <a href="/useraccount"> Account </a> </button>
     <button class="tablinks"> <a href="/community"> Community  </a> </button>
 
-    <h2>Placeholder for Users Name</h2>
+
+</div>
+<h1> {{user}}'s Progress</h1>
+<div class="training">
+ <h2>Training process</h2>
+    <ul>
+        {{#each trainingDisplay}}
+            <li> <div class = "description">{{description}} </div>  on {{startDate}} <br> at {{startTime}} o'clock</li>
+        {{/each}}
+    </ul>
+
+</div>
 
 
-        <ul>
-            {{#each test}}
-                <li>{{description}} <br>  at {{startTime}} {{startDate}}</li>
-            {{/each}}
-        </ul>
+
+<div class="weight">
+    <h2>Weight progress</h2>
+
+    <ul>
+        {{#each weightDisplay}}
+            <li><div class = "description">{{weightKG}} kg </div> on  {{weightDate}}</li>
+        {{/each}}
+    </ul>
 
 </div>

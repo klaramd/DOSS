@@ -65,9 +65,6 @@ router.get('/useraccount/:id', function(req, res,next){
         output: req.params.id
        });
 
-    console.log(req.params.id);
-    console.log('hi');
-
 });
 
 
@@ -94,16 +91,45 @@ router.post('/register/submit', async function(req,res,next){
 
 
 router.get('/communityuser/:id', async function(req, res){
-    console.log("hello community")
-     const id =  req.params.id
-     const trainingDisplay = await dbPromise.Training.findAll({
-     attributes: ['description', 'startDate', 'startTime', 'endTime'],
-     where: {
-     userId: id
-     }
-     })
-    res.render('communityuser', {test: trainingDisplay})
+    const id =  req.params.id
+    const trainingDisplay = await dbPromise.Training.findAll({
+        attributes: ['description', 'startDate', 'startTime', 'endTime'],
+        where: {
+            userId: id
+        },
+        order: [['updatedAt', 'DESC']]
+    })
+
+    var weightDisplay = await dbPromise.Weight.findAll({
+        attributes: ['weightKG', 'weightDate', 'updatedAt'],
+        where: {
+            userId: req.params.id
+        },
+        order: [['updatedAt', 'DESC']]
+
+    });
+
+    const userDisplay = await dbPromise.User.findOne({
+        attributes: ['userName'],
+        where:{
+            id: req.params.id
+        }
+    })
+    res.render('communityuser', {trainingDisplay: trainingDisplay, weightDisplay: weightDisplay, user: userDisplay.valueOf().userName})
 })
+
+
+router.post('/logout', function(req,res,next){
+    req.session.destroy(function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+            // req.session.isLoggedIn = false;
+        }
+    });
+})
+
 
 /****************** REST API STUFF ***********/
 

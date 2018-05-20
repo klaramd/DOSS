@@ -8,23 +8,24 @@ var jwt = require('jsonwebtoken');
 
 var config = require('../config');
 
-/* GET account page. */
 router.get('/', async function(req, res, next) {
 
 
     var trainingDisplay = await dbPromise.Training.findAll({
-        attributes: ['description', 'startDate', 'startTime', 'endTime'],
+        attributes: ['description', 'startDate', 'startTime', 'endTime', 'updatedAt'],
         where: {
             userId: req.session.userId
-        }
+        },
+        order: [['updatedAt', 'DESC']]
     });
 
 
     var weightDisplay = await dbPromise.Weight.findAll({
-        attributes: ['weightKG', 'weightDate'],
+        attributes: ['weightKG', 'weightDate', 'updatedAt'],
         where: {
             userId: req.session.userId
-        }
+        },
+        order: [['updatedAt', 'DESC']]
 
     });
 

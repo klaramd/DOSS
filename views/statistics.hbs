@@ -4,13 +4,13 @@
     <button class="tablinks"> <a href="/community"> Community  </a> </button>
 
 </div>
-
+<h1> Look at your progress</h1>
 <div class="training">
     <h2>Your training progress</h2>
 
     <ul>
         {{#each trainingstest}}
-            <li>{{description}} <br>  at {{startTime}} {{startDate}}</li>
+            <li> <div class = "description">{{description}} </div>  on {{startDate}} <br> at {{startTime}} o'clock</li>
         {{/each}}
     </ul>
 
@@ -21,12 +21,9 @@
 
     <ul>
         {{#each weighttest}}
-            <li>{{weightKG}} kg at  {{weightDate}}</li>
+            <li><div class = "description">{{weightKG}} kg </div> on  {{weightDate}}</li>
         {{/each}}
     </ul>
 
 </div>
 
-<form action="/logout" method="post">
-    <button class="logoutbttn"> Logout </button>
-</form>

@@ -1,21 +1,50 @@
+h1{
+    text-align: center;
+    font-family: "Helvetica Neue";
+    font-weight: 400;
+}
 h2{
     text-align: center;
-}
-
-
-.logoutbttn{
-    position:relative;
-    left: 30%;
-    margin-top: 50%;
-    padding: 20px 40px;
-    background-color: rgba(175, 25, 28, 0.52);
-    color: black;
-    border: none;
     font-family: "Helvetica Neue";
-    border-radius: 30px;
+    font-weight: 300;
+    background-color: white;
+
+    border-radius: 25px;
+}
+
+
+ul {
+    list-style: none;
+}
+
+li{
+    width: 85%;
+    padding: 12px;
+    background-color: white;
+    border-radius: 25px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
 
 }
 
-.logoutbttn:hover {
-    background-color: #AF191C;
+.description{
+
+    font-weight: normal;
+}
+
+.training{
+
+    float: left;
+    width: 400px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.weight{
+    float: right;
+    width: 400px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.4);
 }
