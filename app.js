@@ -24,6 +24,7 @@ var statisticsRouter = require('./routes/statistics');
 var communityRouter = require('./routes/community');
 var contactRouter = require('./routes/contact');
 var aboutRouter = require('./routes/about');
+var apiRouter = require('./routes/restapi');
 
 
 var app = express();
@@ -51,7 +52,7 @@ app.use('/statistics', statisticsRouter);
 app.use('/community', communityRouter);
 app.use('/contact', contactRouter);
 app.use('/about', aboutRouter);
-
+app.use('/restapi', apiRouter);
 
 
 
