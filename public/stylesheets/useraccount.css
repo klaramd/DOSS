@@ -83,15 +83,18 @@ input[type=submit]:hover {
 }
 
 .logoutbttn{
-    position:relative;
-    left: 30%;
-    margin-top: 50%;
-    padding: 20px 40px;
+    position: absolute;
     background-color: rgba(175, 25, 28, 0.52);
     color: black;
+    padding: 14px 20px;
+    margin: 10px 0;
     border: none;
+    top: 85%;
+    left: 66%;
+    width: 20%;
+    height: 6%;
     font-family: "Helvetica Neue";
-    border-radius: 30px;
+    border-radius: 25px;
 
 }
 
