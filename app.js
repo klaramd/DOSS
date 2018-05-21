@@ -1,11 +1,10 @@
-
+//middleware shizzle
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-//var dbPromise = require('./db');
 var expressValidator = require('express-validator');
 var expressSession = require('express-session');
 var bcrypt = require('bcrypt');

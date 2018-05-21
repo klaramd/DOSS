@@ -8,10 +8,6 @@ var dbPromise = require('../db');
 
 /* GET account page. */
 router.get('/', async function(req, res, next) {
-    /*
-    var userName =    var allMembers = await dbPromise.User.findOne({
-        attributes: ['id', 'userName', 'city']
-    })*/
     res.render('useraccount')
 });
 

@@ -53,10 +53,7 @@ router.post('/account/submit', async function(req,res,next){
             console.log(error);
             res.render('account');
         };
-
     };
-
-
 });
 
 
@@ -116,6 +113,7 @@ router.get('/communityuser/:id', async function(req, res){
         }
     })
     res.render('communityuser', {trainingDisplay: trainingDisplay, weightDisplay: weightDisplay, user: userDisplay.valueOf().userName})
+    console.log(userDisplay.valueOf().userName)
 })
 
 
@@ -192,8 +190,7 @@ router.post('/api/weight', async function(req,res,next){
      console.log('hi');
     //getting the userID from the body and then check if it the same from the unwrappedtoken
      if(unwrappedaccesstoken.valueOf().id == req.body.userId) {
-         await
-         dbPromise.Weight.create({
+         await dbPromise.Weight.create({
              userId: unwrappedaccesstoken.valueOf().id,
              weightDate: req.body.weightdate,
              weightKG: req.body.weightkg

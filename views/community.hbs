@@ -4,7 +4,8 @@
     <button class="tablinks"> <a href="/statistics"> Statistics  </a> </button>
 </div>
 <h1> Look at our members</h1>
-<ul>
+<!--<input type="text" name="myInput" onkeyup="myFunction()" placeholder="Search for names..">-->
+<ul name="memberlist">
     {{#each test2}}
         <li><a href="/communityuser/{{id}}">{{userName}}</a> in {{city}}</li>
     {{/each}}
