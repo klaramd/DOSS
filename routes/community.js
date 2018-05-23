@@ -7,16 +7,16 @@ var router = express.Router();
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
-
-
 var config = require('../config');
 var dbPromise = require('../db');
+
 
 
 router.get('/', async function(req, res, next) {
 
     var allMembers = await dbPromise.User.findAll({
-        attributes: ['id', 'userName', 'city']
+        attributes: ['id', 'userName', 'city'],
+
     })
     //console.log(allMembers.dataValues.id);
 
@@ -25,9 +25,6 @@ router.get('/', async function(req, res, next) {
         test2: allMembers
     });
 });
-
-
-
 
 
 

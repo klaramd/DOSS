@@ -13,8 +13,8 @@ var dbPromise = require('../db');
 router.get('/', function(req, res, next) {
 
     res.render('index', {
-        title: 'My TD platform',
-        text: 'This helps to track your body and activites',
+        title: 'My Training Diary',
+        text: 'We help you to track your body and activites',
 
     });
     console.log(req.session);
@@ -60,7 +60,7 @@ router.get('/useraccount/:id', function(req, res,next){
 
 
 //Register credentials
-//https://medium.freecodecamp.org/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52
+
 router.post('/register/submit', async function(req,res,next){
     console.log("Post method triggered");
 
@@ -115,7 +115,8 @@ router.post('/logout', function(req,res,next){
             console.log(err);
         } else {
             res.redirect('/');
-            // req.session.isLoggedIn = false;
+
+
         }
     });
 })
@@ -123,7 +124,7 @@ router.post('/logout', function(req,res,next){
 
 module.exports = router;
 
-//module.exports = {'secret': 'supersecret'};
+
 
 
 

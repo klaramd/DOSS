@@ -31,8 +31,8 @@ router.post('/login', async function(req,res,next){
 
             if (!passwordCheckApi) return res.status(401).send({auth: false, token: null}, "Wrong password");
 
-
-            var usertoken = jwt.sign({id: userQuery.dataValues.id, username: userQuery.dataValues.userName}, config.secret, {expiresIn: 86400});
+            //preferredusername
+            var usertoken = jwt.sign({sub: userQuery.dataValues.id, preferred_username: userQuery.dataValues.userName}, config.secret, {expiresIn: 86400});
             console.log(usertoken);
             var testusertoken = jwt.verify(usertoken, config.secret);
             console.log(testusertoken);
@@ -40,7 +40,8 @@ router.post('/login', async function(req,res,next){
             var accesstoken = jwt.sign ({id: userQuery.dataValues.id}, config.secret, {expiresIn: 86400});
             console.log(accesstoken);
             console.log(req.params.id);
-            res.status(200).send({auth: true, token: usertoken})
+            //send back accesstoken as well
+            res.status(200).send({auth: true, idtoken: usertoken, accesstoken: accesstoken})
 
         } catch (error) {
 
@@ -51,79 +52,75 @@ router.post('/login', async function(req,res,next){
 
 
 router.post('/weight', async function(req,res,next){
-    try {
+
+    if(req.headers["authorization"] == null){
+        res.status(401).send("Authorization header is missing") }
+    else{
+
         try {
             var headertest = req.headers["authorization"];
-        } catch (error) {
-            console.log(error);
-            res.status(401).send("Authorization header is missing");
-        }
 
+            var accesstoken = headertest.substring(7);
 
-        var accesstoken = headertest.substring(7);
+            try {
+                var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+            } catch(error) {
+                console.log(error);
+                res.status(400).send("Token is broken");
+            }
+            console.log(unwrappedaccesstoken.valueOf().id);
 
-        try {
-            var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
-        } catch(error) {
-            console.log(error);
-            res.status(400).send("Token is broken");
-        }
-        console.log(unwrappedaccesstoken.valueOf().id);
-        console.log(req.body.userId);
-        console.log('hi');
-        //getting the userID from the body and then check if it the same from the unwrappedtoken
-        if(unwrappedaccesstoken.valueOf().id == req.body.userId) {
-            await dbPromise.Weight.create({
-                userId: unwrappedaccesstoken.valueOf().id,
-                weightDate: req.body.weightdate,
-                weightKG: req.body.weightkg
-            })
+            //getting the userID from the body and then check if it the same from the unwrappedtoken
+            if(unwrappedaccesstoken.valueOf().id == req.body.userId) {
+                await dbPromise.Weight.create({
+                    userId: unwrappedaccesstoken.valueOf().id,
+                    weightDate: req.body.weightdate,
+                    weightKG: req.body.weightkg
+                })
 
-            res.status(204).send("Everything went fffiiiiiiiine");
-        }
-        //res.redirect('/useraccount/');
-    } catch (error){
-        res.status(400).send("Something is wrong");
-    }
+                res.status(204).send("Everything went fffiiiiiiiine");
+            }
+            //res.redirect('/useraccount/');
+        } catch (error){
+            res.status(400).send("Something is wrong");
+        }  }
 });
 
 router.post('/training', async function(req,res,next){
-    try {
+
+    if(req.headers["authorization"] == null){
+        res.status(401).send("Authorization header is missing") }
+    else{
+
         try {
+
             var headertest = req.headers["authorization"];
-            console.log(headertest);
-        } catch (error) {
-            console.log(error);
-            res.status(401).send("Authorization header is missing");
-        }
+            var accesstoken = headertest.substring(7);
+
+            try {
+                var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
+            } catch(error) {
+                console.log(error);
+                res.status(400).send("Token is broken");
+            }
+            console.log(unwrappedaccesstoken.valueOf().id);
 
 
-        var accesstoken = headertest.substring(7);
+            await dbPromise.Training.create({
+                userId: unwrappedaccesstoken.valueOf().id,
+                startDate: req.body.startdate,
+                startTime: req.body.starttime,
+                endDate: req.body.enddate,
+                endTime: req.body.endtime,
+                description: req.body.details
+            })
 
-        try {
-            var unwrappedaccesstoken = jwt.verify(accesstoken, config.secret);
-        } catch(error) {
-            console.log(error);
-            res.status(400).send("Token is broken");
-        }
-        console.log(unwrappedaccesstoken.valueOf().id);
+            res.status(204).send("Everything went fffiiiiiiiine");
 
-
-        await dbPromise.Training.create({
-            userId: unwrappedaccesstoken.valueOf().id,
-            startDate: req.body.startdate,
-            startTime: req.body.starttime,
-            endDate: req.body.enddate,
-            endTime: req.body.endtime,
-            description: req.body.details
-        })
-
-        res.status(204).send("Everything went fffiiiiiiiine");
-
-        //res.redirect('/useraccount/');
-    } catch (error){
-        res.status(400).send("Something is wrong");
-    }
+            //res.redirect('/useraccount/');
+        } catch (error){
+            res.status(400).send("Something is wrong");
+        } }
 });
 
 

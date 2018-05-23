@@ -14,6 +14,7 @@ router.get('/', async function(req, res, next) {
 
 //Getting new trainings input
 router.post('/submittraining', async function(req,res,next){
+    //check if their is an ID in the session
     //var currentID = req.params.id;
     await dbPromise.Training.create({
         userId: req.session.userId,
